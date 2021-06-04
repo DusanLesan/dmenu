@@ -23,4 +23,4 @@ static unsigned int lines      = 0;
  * for example: " /?\"&[]"
  */
 static const char worddelimiters[] = " ";
-static char hp[] = "steam,pcmanfm,code,insomnia,smartgit,rale,maimpick,geany,transmission-gtk,displayselect";
+static char hp[] = "autostart,steam,lf,code,insomnia,smartgit,rale,geany,transmission,displayselect";
