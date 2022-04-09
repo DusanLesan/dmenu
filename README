@@ -28,3 +28,6 @@ Patches
 -----------
 instant
 highpriority
+pass
+fuzzymatch
+fuzzyhighlight
