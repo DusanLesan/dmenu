@@ -492,6 +492,13 @@ keypress(XKeyEvent *ev)
 		case XK_n: ksym = XK_Down;      break;
 		case XK_p: ksym = XK_Up;        break;
 
+		case XK_Delete: ksym = XK_k; /* delete word right */
+			while (text[cursor] != '\0' && !strchr(worddelimiters, text[cursor]))
+				cursor = nextrune(+1);
+			while (text[cursor] != '\0' && strchr(worddelimiters, text[cursor]))
+				cursor = nextrune(+1);
+			insert(NULL, 0 - cursor);
+			break;
 		case XK_k: /* delete right */
 			text[cursor] = '\0';
 			match();
@@ -500,6 +507,7 @@ keypress(XKeyEvent *ev)
 			insert(NULL, 0 - cursor);
 			break;
 		case XK_w: /* delete word */
+		case XK_BackSpace: ksym = XK_w;
 			while (cursor > 0 && strchr(worddelimiters, text[nextrune(-1)]))
 				insert(NULL, nextrune(-1) - cursor);
 			while (cursor > 0 && !strchr(worddelimiters, text[nextrune(-1)]))
