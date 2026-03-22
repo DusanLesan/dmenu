@@ -145,7 +145,7 @@ drawhighlights(struct item *item, int x, int y, int maxw)
 	                   ? SchemeSelHighlight
 	                   : SchemeNormHighlight]);
 	for (i = 0, highlight = item->text; *highlight && text[i];) {
-		if (*highlight == text[i]) {
+		if (!fstrncmp(highlight, &text[i], 1)) {
 			/* get indentation */
 			c = *highlight;
 			*highlight = '\0';
@@ -157,7 +157,7 @@ drawhighlights(struct item *item, int x, int y, int maxw)
 			highlight[1] = '\0';
 			drw_text(
 				drw,
-				x + indent - (lrpad / 2),
+				x + indent - (lrpad / 2.),
 				y,
 				MIN(maxw - indent, TEXTW(highlight) - lrpad),
 				bh, 0, highlight, 0
